@@ -170,6 +170,8 @@ namespace Sres.Net.EEIP
 
         List<Encapsulation.CIPIdentityItem> returnList = new List<Encapsulation.CIPIdentityItem>();
 
+
+
         /// <summary>
         /// List and identify potential targets. This command shall be sent as braodcast massage using UDP.
         /// </summary>
@@ -186,6 +188,9 @@ namespace Sres.Net.EEIP
                     {
                         if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                         {
+                            if (ip.Address.ToString().StartsWith("169."))
+                                continue;//dhcp no address
+
                             System.Net.IPAddress mask = ip.IPv4Mask;
                             System.Net.IPAddress address = ip.Address;
 
